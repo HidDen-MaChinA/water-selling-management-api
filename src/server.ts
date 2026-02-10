@@ -1,11 +1,12 @@
 import express  from "express";
 import userRouter from "./routes/userRoute.js";
-import { authenticateJWT } from "./middlewares/authentificationMiddleware.ts";
+import cookieParser from "cookie-parser";
 
 const app = express(); // Create an Express application instance
 const PORT = 3000; // Define the port number
 
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api/users', userRouter);
 
 // Define a route for the root URL ("/") that handles GET requests

@@ -6,8 +6,10 @@ const createUser : RequestHandler = (req, res, next)=>{
     if(!requestBody){
         return res.status(500).json({message: "no payload provided"})
     }else{
-        const user = requestBody.user;
-        return res.json(userService.createUser(user))
+        const user = requestBody;
+        return userService.createUser(user).then((createdUser)=>{
+         res.json(createUser)
+        })
     }
 }
 

@@ -1,7 +1,6 @@
 import yup from "yup";
 
-export const createUserSchemaValidator = yup.object().shape({
+export const loginUserSchemaValidator = yup.object().shape({
     username: yup.string().required("name is required"),
     password: yup.string().required("password is required"),
-    role: yup.string().oneOf(["ADMIN", "USER"])
 });

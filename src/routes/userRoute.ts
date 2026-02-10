@@ -5,9 +5,9 @@ import validate from '../middlewares/validateMiddleware.ts';
 import { createUserSchemaValidator } from '../validators/user/createUserSchemaValidator.ts';
 import withRole from '../middlewares/withRoleMiddleware.ts';
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post(
+userRouter.post(
   "/create",
   validate(createUserSchemaValidator),
   authenticateJWT,
@@ -15,4 +15,4 @@ router.post(
   userController.createUser
 );
 
-export default router;
+export default userRouter;
