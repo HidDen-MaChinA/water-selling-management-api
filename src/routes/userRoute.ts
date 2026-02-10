@@ -3,11 +3,16 @@ import userController from '../controllers/userController.ts';
 import { authenticateJWT } from '../middlewares/authentificationMiddleware.ts';
 import validate from '../middlewares/validateMiddleware.ts';
 import { createUserSchemaValidator } from '../validators/user/createUserSchemaValidator.ts';
+import withRole from '../middlewares/withRoleMiddleware.ts';
 
 const router = express.Router();
 
-
-
-router.post('/create',authenticateJWT, validate(createUserSchemaValidator), userController.createUser)
+router.post(
+  "/create",
+  validate(createUserSchemaValidator),
+  authenticateJWT,
+  withRole("ADMIN"),
+  userController.createUser
+);
 
 export default router;
