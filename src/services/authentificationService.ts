@@ -19,25 +19,27 @@ const login = (arg: { username: string; password: string }) : Promise<string> =>
       },
     })
     .then(async (user) => {
-      const match = await bcrypt.compare(password, user.password);
-      if (match) {
-        const toReturn = {
-          username: user.username,
-          role: user.role,
-        };
-        return toReturn;
+      if (user) {
+        const match = await bcrypt.compare(password, user.password);
+        if (match) {
+          const toReturn = {
+            id: user.id,
+            username: user.username,
+            role: user.role,
+          };
+          return toReturn;
+        } else {
+          throw error("password incorrect");
+        }
       } else {
-        throw error("password incorrect");
+        throw error("user not found");
       }
-    }).then((jwtPayload: {username: string, role: Role})=>{
-        const token = jwt.sign(
-            jwtPayload,
-            secretKey,
-            {
-                expiresIn: '8h'
-            }
-        )
-        return token;
+    })
+    .then((jwtPayload: { username: string; role: Role; id: string }) => {
+      const token = jwt.sign(jwtPayload, secretKey, {
+        expiresIn: "8h",
+      });
+      return token;
     });
 };
 

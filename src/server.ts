@@ -1,6 +1,7 @@
 import express  from "express";
-import userRouter from "./routes/userRoute.js";
+import userRouter from "./routes/userRoute.ts";
 import cookieParser from "cookie-parser";
+import authRoutes from "./routes/authentificationRoute.ts";
 
 const app = express(); // Create an Express application instance
 const PORT = 3000; // Define the port number
@@ -8,6 +9,7 @@ const PORT = 3000; // Define the port number
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/users', userRouter);
+app.use('/api/auth', authRoutes);
 
 // Define a route for the root URL ("/") that handles GET requests
 app.get("/", (req, res) => {
