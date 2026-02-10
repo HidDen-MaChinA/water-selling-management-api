@@ -1,13 +1,21 @@
+import "dotenv/config"
 import express  from "express";
 import userRouter from "./routes/userRoute.ts";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authentificationRoute.ts";
+import cors from "cors";
 
 const app = express(); // Create an Express application instance
 const PORT = 3000; // Define the port number
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+  origin: function (origin, callback) {
+    callback(null, true) 
+  },
+  credentials:true
+}))
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRoutes);
 
