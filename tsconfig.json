@@ -10,6 +10,7 @@
     "module": "nodenext",
     "target": "esnext",
     "types": [],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -24,6 +25,7 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
+
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
@@ -31,6 +33,7 @@
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
+    "allowImportingTsExtensions":true,
 
     // Recommended Options
     "strict": true,
