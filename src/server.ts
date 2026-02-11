@@ -11,20 +11,20 @@ const PORT = 3000; // Define the port number
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: function (origin, callback) {
-    callback(null, true) 
-  },
+  origin: "http://localhost:5173",
+  optionsSuccessStatus: 200,
   credentials:true
 }))
+
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRoutes);
 
-// Define a route for the root URL ("/") that handles GET requests
-app.get("/", (req, res) => {
-  res.send("Hello World from Express!"); // Send a response to the client
+
+
+app.get("/ping", (req, res) => {
+  res.send("pong");
 });
 
-// Start the server and listen for incoming requests on the specified port
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

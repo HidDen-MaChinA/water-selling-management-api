@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import prisma from "../lib/prisma.ts"
 import { error } from "console";
 import type { Role } from "../generated/prisma/enums.ts";
+import type { User } from '../generated/prisma/browser.ts';
 
 
 const secretKey = process.env.JWT_SECRET_KEY;
@@ -13,26 +14,22 @@ const login = (arg: { username: string; password: string }) : Promise<string> =>
     throw error("login impossible JWT not configured properly");
   }
   return prisma.user
-    .findUnique({
+    .findUniqueOrThrow({
       where: {
         username: username,
       },
     })
     .then(async (user) => {
-      if (user) {
-        const match = await bcrypt.compare(password, user.password);
-        if (match) {
-          const toReturn = {
-            id: user.id,
-            username: user.username,
-            role: user.role,
-          };
-          return toReturn;
-        } else {
-          throw error("password incorrect");
-        }
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
+        const toReturn = {
+          id: user.id,
+          username: user.username,
+          role: user.role,
+        };
+        return toReturn;
       } else {
-        throw error("user not found");
+        throw error("password incorrect");
       }
     })
     .then((jwtPayload: { username: string; role: Role; id: string }) => {
@@ -43,6 +40,13 @@ const login = (arg: { username: string; password: string }) : Promise<string> =>
     });
 };
 
+const whoami = (arg: {id: string, username: string, role: Role}) : Promise<{username: string, role: Role, id:string}> =>{
+  return new Promise((res, rej)=>{
+    res(arg);
+  }) 
+}
+
 export default {
-    login: login
+    login: login,
+    whoami: whoami
 }

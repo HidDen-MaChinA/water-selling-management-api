@@ -11,15 +11,23 @@ const login: RequestHandler = (req, res)=>{
             res.cookie('sessionToken', token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "prod",
-                maxAge:  168,
-                sameSite: 'strict'
+                sameSite: 'none'
             }).status(200).json({message: "login successfuly"});
         });
     }
 }
 
+const whoami : RequestHandler = (req, res)=>{
+   const payload = req.payload 
+   const user = payload?.user
+   authentificationService.whoami(user).then((user)=>{
+    res.status(200).json(user);
+   });
+}
+
 
 
 export default {
-    login: login
+    login: login,
+    whoami: whoami
 }
