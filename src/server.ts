@@ -23,7 +23,7 @@ app.use(cors({
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/queues', authenticateJWT, queueRouter);
-app.use('/api/customers', authenticateJWT, withRole("ADMIN"), customerRouter);
+app.use('/api/customers', authenticateJWT, withRole("USER"), customerRouter);
 
 
 

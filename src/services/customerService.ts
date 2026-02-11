@@ -27,7 +27,7 @@ const getCustomer= async (arg: {id:string})=>{
             id: arg.id,
         },
         include: {
-            queue: true
+            currentQueuePosition: true
         }
     });
 }

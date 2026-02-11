@@ -9,7 +9,7 @@ const customerRouter = Router();
 
 customerRouter.post("/create",validate(createCustomerSchemaValidator), customerController.createCustomer);
 customerRouter.post("/update",validate(updateCustomerSchemaValidator), customerController.updateCustomer);
-customerRouter.get("/getall", customerController.getCustomers)
+customerRouter.get("/getall/", customerController.getCustomers)
 customerRouter.get("/getone/:customerId", customerController.getCustomer);
 
 

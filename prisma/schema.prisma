@@ -34,14 +34,18 @@ model Customer{
   id String @id @default(uuid())
   status CustomerStatus @default(ACTIF)
   name String @unique
-  queue Queue[]
+  currentQueuePosition Queue[] @relation("customer_hold_queue_place")
+  nextQueuePosition Queue[] @relation("customer_next_in_queue_place")
 }
 
 model Queue{
   id String @id @default(uuid())
-  customerId String
-  customer Customer @relation(fields: [customerId], references: [id]) 
   bidonNumber Int
+  createdAt DateTime @default(now())
+  currentCustomerId String
+  nextCustomerId String
+  currentCustomer Customer @relation("customer_hold_queue_place",fields: [currentCustomerId], references: [id]) 
+  nextCustomer Customer @relation("customer_next_in_queue_place",fields: [nextCustomerId], references: [id]) 
 }
 
 

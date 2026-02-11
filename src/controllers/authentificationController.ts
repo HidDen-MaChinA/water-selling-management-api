@@ -11,7 +11,7 @@ const login: RequestHandler = (req, res)=>{
             res.cookie('sessionToken', token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "prod",
-                sameSite: 'none'
+                sameSite: process.env.NODE_ENV === "prod" && "none"
             }).status(200).json({message: "login successfuly"});
         });
     }
