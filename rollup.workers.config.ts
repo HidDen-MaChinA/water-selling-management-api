@@ -8,7 +8,7 @@ workers.push("./src/jobs/index.ts");
 export default {
   input: workers,
   output: {
-    dir: "dist/jobs",
+    dir: "dist",
     format: "esm", // Output format: ES module
     sourcemap: true,
     preserveModules: true

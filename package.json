@@ -15,6 +15,7 @@
     "dev/prisma/migrate": "prisma migrate dev",
     "dev/prisma/generate": "prisma generate",
     "build/workers": "rollup --config rollup.workers.config.ts --configPlugin typescript",
+    "dev/workers": "rollup --config rollup.workers.config.ts --configPlugin typescript --watch",
     "start/workers": "node ./dist/jobs/index.js"
   },
   "dependencies": {

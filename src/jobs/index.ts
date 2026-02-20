@@ -10,6 +10,11 @@ const bree = new Bree({
     jobs: [
         {
             name: "generateAnalyticsDataWorker",
+            worker: {
+                workerData: {
+                    timeScoop: "day"
+                }
+            }
         }
     ]
 })
