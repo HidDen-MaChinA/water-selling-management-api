@@ -1,8 +1,8 @@
 import { Router } from "express";
-import queueController from "../controllers/queueController.ts";
-import { createQueueSchemaValidator } from "../validators/user/createQueueSchemaValidator.ts";
-import validate from "../middlewares/validateMiddleware.ts";
-import { updateQueueSchemaValidator } from "../validators/user/updateQueueSchemaValidator.ts";
+import queueController from "../controllers/queueController";
+import { createQueueSchemaValidator } from "../validators/user/createQueueSchemaValidator";
+import validate from "../middlewares/validateMiddleware";
+import { updateQueueSchemaValidator } from "../validators/user/updateQueueSchemaValidator";
 
 const queueRouter = Router();
 

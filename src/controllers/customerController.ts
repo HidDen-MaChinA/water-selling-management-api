@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import customerService from "../services/customerService.ts";
+import customerService from "../services/customerService";
 
 const createCustomer: RequestHandler = (req, res)=>{
     const requestBody = req?.body;

@@ -1,4 +1,4 @@
-import type { NextFunction, Request, RequestHandler, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import yup from 'yup';
 
 const validate = (schema: yup.ObjectSchema<{[arg: string]: any}>) => (req: Request, res:Response, next:NextFunction)=> {

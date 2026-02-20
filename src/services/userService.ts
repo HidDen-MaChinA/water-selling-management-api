@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import prisma from "../lib/prisma.ts"
-import { Role } from "../generated/prisma/enums.ts";
+import prisma from "../lib/prisma"
+import { Role } from "../generated/prisma/enums";
 
 const saltRounds = 10;
 

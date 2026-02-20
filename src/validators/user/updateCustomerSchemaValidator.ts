@@ -1,5 +1,5 @@
 import yup from 'yup';
-import { CustomerStatus } from '../../generated/prisma/enums.ts';
+import { CustomerStatus } from '../../generated/prisma/enums';
 
 export const updateCustomerSchemaValidator = yup.object().shape({
     id: yup.string().required("customer id is required"),

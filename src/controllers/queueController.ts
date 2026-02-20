@@ -1,9 +1,9 @@
 import type { RequestHandler } from "express";
-import queueService from "../services/queueService.ts";
+import queueService from "../services/queueService";
 
 const createQueue: RequestHandler = (req, res)=>{
     const requestBody = req?.body;
-    queueService.createQueue({bidonNumber: requestBody.bidonNumber, currentCustomerId: requestBody.customerId})
+    queueService.createQueue({bidonNumber: requestBody.bidonNumber, customerId: requestBody.customerId})
     .then((createdQueue)=>{
         res.status(200).json(createdQueue);
     }).catch(()=>{

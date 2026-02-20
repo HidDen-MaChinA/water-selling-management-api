@@ -1,8 +1,8 @@
 import { Router } from "express";
-import customerController from "../controllers/customerController.ts";
-import validate from "../middlewares/validateMiddleware.ts";
-import { createCustomerSchemaValidator } from "../validators/user/createCustomerSchemaValidator.ts";
-import { updateCustomerSchemaValidator } from "../validators/user/updateCustomerSchemaValidator.ts";
+import customerController from "../controllers/customerController";
+import validate from "../middlewares/validateMiddleware";
+import { createCustomerSchemaValidator } from "../validators/user/createCustomerSchemaValidator";
+import { updateCustomerSchemaValidator } from "../validators/user/updateCustomerSchemaValidator";
 
 const customerRouter = Router();
 

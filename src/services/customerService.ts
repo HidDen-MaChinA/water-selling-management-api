@@ -1,5 +1,5 @@
-import type { CustomerStatus } from "../generated/prisma/enums.ts"
-import prisma from "../lib/prisma.ts"
+import type { CustomerStatus } from "../generated/prisma/enums"
+import prisma from "../lib/prisma"
 
 const createCustomer = async (arg: {name: string})=>{
     return await prisma.customer.create({

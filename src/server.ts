@@ -2,12 +2,12 @@ import "dotenv/config"
 import express  from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { authenticateJWT } from "./middlewares/authentificationMiddleware.ts";
-import userRouter from "./routes/userRoute.ts";
-import authRouter from "./routes/authentificationRoute.ts";
-import queueRouter from "./routes/queueRoutes.ts";
-import customerRouter from "./routes/customerRoute.ts";
-import withRole from "./middlewares/withRoleMiddleware.ts";
+import { authenticateJWT } from "./middlewares/authentificationMiddleware";
+import userRouter from "./routes/userRoute";
+import authRouter from "./routes/authentificationRoute";
+import queueRouter from "./routes/queueRoutes";
+import customerRouter from "./routes/customerRoute";
+import withRole from "./middlewares/withRoleMiddleware";
 
 const app = express(); // Create an Express application instance
 const PORT = process.env.NODE_ENV === "prod" ? 80 : 3000; // Define the port number

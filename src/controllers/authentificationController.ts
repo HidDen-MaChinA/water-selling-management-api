@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import authentificationService from "../services/authentificationService.ts";
+import authentificationService from "../services/authentificationService";
 
 const login: RequestHandler = (req, res)=>{
     const requestBody = req.body;

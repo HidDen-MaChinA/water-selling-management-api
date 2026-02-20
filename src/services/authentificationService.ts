@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcryptjs";
-import prisma from "../lib/prisma.ts"
+import prisma from "../lib/prisma"
 import { error } from "console";
-import type { Role } from "../generated/prisma/enums.ts";
-import type { User } from '../generated/prisma/browser.ts';
+import type { Role } from "../generated/prisma/enums";
+import type { User } from '../generated/prisma/browser';
 
 
 const secretKey = process.env.JWT_SECRET_KEY;

@@ -1,6 +1,5 @@
 import type { RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
-import type { Role } from '../generated/prisma/enums.ts';
 
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;

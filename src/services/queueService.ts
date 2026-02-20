@@ -1,10 +1,10 @@
-import type { Customer } from "../generated/prisma/browser.ts"
-import prisma from "../lib/prisma.ts"
+import type { Customer } from "../generated/prisma/browser"
+import prisma from "../lib/prisma"
 
-const createQueue = async (arg: {currentCustomerId: string, bidonNumber: number} )=>{
+const createQueue = async (arg: {customerId: string, bidonNumber: number} )=>{
     return await prisma.queue.create({
         data:{
-            currentCustomerId:arg.currentCustomerId,
+            customerId:arg.customerId,
             bidonNumber: arg.bidonNumber,
         }
     })

@@ -24,25 +24,48 @@ enum CustomerStatus {
 }
 
 model User{
-  id String @id @default(uuid())
+  id String @id @default(uuid()) @unique
   username String @unique
   password String
   role Role @default(USER)
 }
 
 model Customer{
-  id String @id @default(uuid())
+  id String @id @default(uuid()) @unique
   status CustomerStatus @default(ACTIF)
   name String @unique
+  createdAt DateTime @default(now())
   currentQueuePosition Queue[] @relation("customer_hold_queue_place")
+  analytics Analytic[] @relation("customer_have_analytics")
 }
 
 model Queue{
-  id String @id @default(uuid())
+  id String @id @default(uuid()) @unique
   bidonNumber Int
   createdAt DateTime @default(now())
-  currentCustomerId String
-  currentCustomer Customer @relation("customer_hold_queue_place",fields: [currentCustomerId], references: [id]) 
+  processedForAnalytics Boolean @default(false)
+  customerId String
+  currentCustomer Customer @relation("customer_hold_queue_place",fields: [customerId], references: [id]) 
+}
+
+model Analytic{
+  id String @id @default(uuid()) @unique
+  updatedAt DateTime @default(now())
+  customerId String @unique
+  totalBidonNumber Int
+  customer Customer @relation("customer_have_analytics", fields: [customerId], references: [id] ) 
+  customerAnalyticsData CustomerAnalyticData[] @relation("customer_s_analytics_data")
+}
+
+model CustomerAnalyticData {
+  id String @id @default(uuid()) @unique
+  analyticId String
+  analytic Analytic @relation("customer_s_analytics_data", fields: [analyticId], references: [id])
+  dateRangeStart DateTime
+  dateRangeEnd DateTime
+  createdAt DateTime @default(now())
+  bidonNumber Int
+  customerVisiteForDateRange Int
 }
 
 
