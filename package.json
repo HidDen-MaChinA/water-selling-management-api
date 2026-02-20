@@ -8,12 +8,14 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "rollup  --config rollup.config.ts --configPlugin typescript --watch",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "start": "node ./dist/server.js --watch",
     "gen/analytics/data": "ts-node ./src/scripts/generateAnalyticsData.ts",
     "del/duplicate/analytics/data": "ts-node ./src/scripts/deleteDuplicateAnalyticsData.ts",
-    "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "dev/prisma/migrate": "prisma migrate dev",
     "dev/prisma/generate": "prisma generate",
-    "start": "node ./dist/server.js --watch"
+    "build/workers": "rollup --config rollup.workers.config.ts --configPlugin typescript",
+    "start/workers": "node ./dist/jobs/index.js"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
@@ -21,7 +23,10 @@
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
+    "axe": "^13.0.0",
     "bcryptjs": "^3.0.3",
+    "bree": "^9.2.9",
+    "cabin": "^14.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
@@ -30,6 +35,7 @@
     "pg": "^8.18.0",
     "prisma": "^7.3.0",
     "rollup": "^4.57.1",
+    "signale": "^1.4.0",
     "tslib": "^2.8.1",
     "yup": "^1.7.1"
   },
@@ -40,7 +46,9 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^25.2.2",
+    "@types/node": "^25.3.0",
+    "blob": "^0.1.0",
+    "glob": "^13.0.6",
     "nodemon": "^3.1.11",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-postcss": "^4.0.2",
