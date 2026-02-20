@@ -3,7 +3,7 @@ import queueService from "../services/queueService";
 
 const createQueue: RequestHandler = (req, res)=>{
     const requestBody = req?.body;
-    queueService.createQueue({bidonNumber: requestBody.bidonNumber, customerId: requestBody.customerId})
+    queueService.createQueue({bidonNumber: parseInt(requestBody.bidonNumber), customerId: requestBody.customerId})
     .then((createdQueue)=>{
         res.status(200).json(createdQueue);
     }).catch(()=>{
@@ -13,7 +13,7 @@ const createQueue: RequestHandler = (req, res)=>{
 
 const updateQueue: RequestHandler = (req, res)=>{
     const requestBody = req?.body;
-    queueService.updateQueue({bidonNumber: requestBody.bidonNumber, queueId: requestBody.queueId})
+    queueService.updateQueue({bidonNumber: parseInt(requestBody.bidonNumber), queueId: requestBody.queueId})
     .then((updatedQueue)=>{
         res.status(200).json(updatedQueue);
     }).catch(()=>{

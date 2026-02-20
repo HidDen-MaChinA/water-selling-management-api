@@ -23,7 +23,21 @@ const queues = await prisma.queue.findMany({
       gte: dateRange.startDate.toISOString(),
       lte: dateRange.endDate.toISOString(),
     },
+    AND: {
+      processedForAnalytics: false
+    }
   },
+}).then(async (foundQueues)=>{
+  return await prisma.queue.updateManyAndReturn({
+    where: {
+      id: {
+        in: foundQueues.map(_=>_.id)
+      }
+    },
+    data: {
+      processedForAnalytics: true
+    }
+  })
 });
 
 

@@ -17,7 +17,15 @@ export async function persistAnalytic(customerId: string,analytics: Analytic[],q
     },
     create: {
       totalBidonNumber: computedTotalBidonNumber,
-      customerId: customerId
+      customerId: customerId,
+      customerAnalyticsData: {
+        create: {
+          bidonNumber: computedTotalBidonNumber,
+          customerVisiteForDateRange: queues.length,
+          dateRangeStart: startDate.toISOString(),
+          dateRangeEnd: endDate.toISOString()
+        }
+      }
     }, 
     update:{
       totalBidonNumber: analytic?.totalBidonNumber ? analytic.totalBidonNumber + computedTotalBidonNumber : computedTotalBidonNumber,

@@ -4,7 +4,7 @@ export function createDateRangeForScoop(scoop: "day" | "week" | "month" | "year"
     switch(scoop){
         case "day": 
             startDate.setHours(0,0,0,0);
-            endDate.setHours(23)
+            endDate.setHours(23,0,0,0)
             break;
         case "week": 
             startDate = getDateOfFirstDayOfTheWeek()
