@@ -8,6 +8,7 @@ import authRouter from "./routes/authentificationRoute";
 import queueRouter from "./routes/queueRoutes";
 import customerRouter from "./routes/customerRoute";
 import withRole from "./middlewares/withRoleMiddleware";
+import analyticRouter from "./routes/analyticRoute";
 
 const app = express(); // Create an Express application instance
 const PORT = process.env.NODE_ENV === "prod" ? 80 : 3000; // Define the port number
@@ -22,8 +23,9 @@ app.use(cors({
 
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/queues', authenticateJWT,withRole("USER"), queueRouter);
-app.use('/api/customers', authenticateJWT, withRole("USER"), customerRouter);
+app.use("/api/queues", authenticateJWT, withRole("USER"), queueRouter);
+app.use("/api/customers", authenticateJWT, withRole("USER"), customerRouter);
+app.use("/api/analytics", authenticateJWT, withRole("ADMIN"), analyticRouter);
 
 
 
