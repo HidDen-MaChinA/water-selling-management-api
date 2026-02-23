@@ -31,10 +31,10 @@ export async function persistAnalytic(customerId: string,analytics: Analytic[],q
       totalBidonNumber: analytic?.totalBidonNumber ? analytic.totalBidonNumber + computedTotalBidonNumber : computedTotalBidonNumber,
       customerAnalyticsData: {
         create: {
-          bidonNumber: computedTotalBidonNumber,
-          customerVisiteForDateRange: queues.length,
-          dateRangeStart: startDate.toISOString(),
-          dateRangeEnd: endDate.toISOString()
+            bidonNumber: computedTotalBidonNumber,
+            customerVisiteForDateRange: queues.length,
+            dateRangeStart: startDate.toISOString(),
+            dateRangeEnd: endDate.toISOString()
         }
       }
     }

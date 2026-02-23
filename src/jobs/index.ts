@@ -15,6 +15,9 @@ const bree = new Bree({
                     timeScoop: "day"
                 }
             }
+        },
+        {
+            name: "deleteDuplicateCutomerAnalyticsDataWorker"
         }
     ]
 })
